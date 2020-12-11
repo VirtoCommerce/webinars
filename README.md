@@ -8,6 +8,7 @@ This repo provides technical resources to help find resources from [Virto Commer
 ## Past events
 - [2020-12 How to use Azure DevOps for Virto Commerce solutions](2020-12-AzureDevOps/README.md)
 
+## References
 You can find more information on:
 - [Home](https://virtocommerce.com/)
 - [Pulic Community](https://www.virtocommerce.org/)
