@@ -19,7 +19,19 @@ This webinar’s content is primarily technical-oriented; therefore, we invite e
 ![](Repositories.PNG)
 
 ## Section 2 - Productivity & Quality tools
-TODO:
+
+### vc-build 
+![](slide-13.png)
+
+![](slide-14.png)
+
+### Links
+
+[vc-build docs](https://github.com/VirtoCommerce/vc-platform/tree/master/build)
+
+[VC GitActions workflow examples](https://github.com/VirtoCommerce/vc-platform/blob/master/.github/workflows/main.yml)
+
+[virtocmmerce sonarcloud](https://sonarcloud.io/organizations/virto-commerce/projects)
 
 ## Section 3 - How to Configure pipelines
 TODO:
