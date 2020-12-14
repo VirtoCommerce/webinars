@@ -1,0 +1,460 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hostingPlanName-backend": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new web app price tier to create."
+      }
+    },
+    "hostingPlanName-storefront": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new web app price tier to create."
+      }
+    },
+    "webSiteName-backend": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new web app to create."
+      }
+    },
+    "webSiteName-storefront": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new web app to create."
+      }
+    },
+    "sqlserverName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new sql server to create."
+      }
+    },
+    "administratorLogin": {
+      "type": "string",
+      "metadata": {
+        "description": "The admin user of the SQL Server"
+      }
+    },
+    "administratorLoginPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "The password of the admin user of the SQL Server"
+      }
+    },
+    "databaseName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new database to create."
+      }
+    },
+    "requestedServiceObjectiveName": {
+      "type": "string",
+      "metadata": {
+        "description": "The pricing tier of the database."
+      }
+    },
+    "searchServiceName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the search service to create"
+      }
+    },
+    "searchServiceReplicas": {
+      "type": "int",
+      "metadata": {
+        "description": "The number of the search service replicas"
+      },
+      "defaultValue": 1
+    },
+    "searchServiceScope": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the search service scope to create"
+      },
+      "defaultValue": "dev"
+    },
+    "virtoCommerceEndpointPassword": {
+      "type": "string",
+      "metadata": {
+        "description": "The password for frontend"
+      }
+    },
+    "virtoCommerceEndpointURL": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the endpoint url"
+      }
+    },
+    "storageAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new storage account to create."
+      }
+    },
+    "appinsights-backend": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new appinsights to create."
+      }
+    },
+    "appinsights-storefront": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the new appinsights to create."
+      }
+    }
+  },
+  "variables": {
+    "skuHostingPlan": "Basic",
+    "skuCodeHostingPlan": "B2",
+    "collation": "SQL_Latin1_General_CP1_CI_AS",
+    "edition": "Standard",
+    "maxSizeBytes": "268435456000",
+    "searchSKU": "standard",
+    "storageAccountType": "Standard_LRS",
+    "storageProvider": "AzureBlobStorage"
+  },
+  "resources": [
+    {
+      "name": "[parameters('sqlserverName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "SqlServer"
+      },
+      "apiVersion": "2014-04-01",
+      "properties": {
+        "administratorLogin": "[parameters('administratorLogin')]",
+        "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "name": "[concat(parameters('sqlserverName'), '/', parameters('databaseName'))]",
+          "type": "Microsoft.Sql/servers/databases",
+          "location": "[resourceGroup().location]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "2014-04-01",
+          "dependsOn": [ "[concat('Microsoft.Sql/servers/', parameters('sqlserverName'))]" ],
+          "properties": {
+            "edition": "[variables('edition')]",
+            "collation": "[variables('collation')]",
+            "maxSizeBytes": "[variables('maxSizeBytes')]",
+            "requestedServiceObjectiveName": "[parameters('requestedServiceObjectiveName')]"
+          }
+        },
+        {
+          "type": "Microsoft.Sql/servers/advisors",
+          "name": "[concat(parameters('sqlserverName'), '/', 'ForceLastGoodPlan')]",
+          "apiVersion": "2014-04-01",
+          "properties": {
+            "autoExecuteValue": "Enabled"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('sqlserverName'))]",
+            "CreateIndex"
+          ]
+        },
+        {
+          "type": "Microsoft.Sql/servers/advisors",
+          "name": "[concat(parameters('sqlserverName'), '/', 'CreateIndex')]",
+          "apiVersion": "2014-04-01",
+          "properties": {
+            "autoExecuteValue": "Enabled"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('sqlserverName'))]",
+            "DropIndex"
+          ]
+        },
+        {
+          "type": "Microsoft.Sql/servers/advisors",
+          "name": "[concat(parameters('sqlserverName'), '/', 'DropIndex')]",
+          "apiVersion": "2014-04-01",
+          "properties": {
+            "autoExecuteValue": "Enabled"
+          },
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('sqlserverName'))]",
+            "[parameters('databaseName')]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "[parameters('searchServiceName')]",
+      "type": "Microsoft.Search/searchServices",
+      "apiVersion": "2015-08-19",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "azureSearch"
+      },
+      "properties": {
+        "replicaCount": "[parameters('searchServiceReplicas')]",
+        "partitionCount": 1
+      },
+      "sku": {
+        "name": "[variables('searchSKU')]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('hostingPlanName-backend')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "HostingPlan-backend"
+      },
+      "sku": {
+        "name": "[variables('skuCodeHostingPlan')]",
+        "tier": "[variables('skuHostingPlan')]"
+      },
+      "properties": {
+        "name": "[parameters('hostingPlanName-backend')]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('webSiteName-backend')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [ "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName-backend'))]" ],
+      "tags": {
+        "displayName": "Website-backend"
+      },
+      "properties": {
+        "name": "[parameters('webSiteName-backend')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName-backend'))]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "web",
+          "dependsOn": [ "[concat('Microsoft.Web/Sites/', parameters('webSiteName-backend'))]" ],
+          "properties": {
+            "phpVersion": "",
+            "use32BitWorkerProcess": false,
+            "alwaysOn": true,
+            "httpsOnly": true,
+            "http20Enabled": true,
+            "minTlsVersion": "1.2",
+            "requestTracingEnabled": true,
+            "requestTracingExpirationTime": "9999-12-31T23:59:00Z",
+            "httpLoggingEnabled": true,
+            "logsDirectorySizeLimit": 100,
+            "detailedErrorLoggingEnabled": true,
+            "metadata": [
+              {
+                "name": "CURRENT_STACK",
+                "value": "dotnetcore"
+              }
+            ],
+            "virtualApplications": [
+              {
+                "virtualPath": "/",
+                "physicalPath": "site\\wwwroot\\platform",
+                "preloadEnabled": false,
+                "virtualDirectories": [
+                  {
+                    "virtualPath": "/modules",
+                    "physicalPath": "site\\wwwroot\\modules"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', parameters('webSiteName-backend'))]",
+            "[concat('Microsoft.Insights/components/', parameters('appinsights-backend'))]",
+            "[resourceId('Microsoft.Search/searchServices/', parameters('searchServiceName'))]"
+          ],
+          "properties": {
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('Microsoft.Insights/components/', parameters('appinsights-backend')), '2015-05-01').InstrumentationKey]",
+            "Assets:AzureBlobStorage:ConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',concat(listKeys(parameters('storageAccountName'),'2015-05-01-preview').key1))]",
+            "Assets:Provider": "[variables('storageProvider')]",
+            "Content:AzureBlobStorage:ConnectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',concat(listKeys(parameters('storageAccountName'),'2015-05-01-preview').key1))]",
+            "Content:AzureBlobStorage:RootPath": "cms",
+            "Content:Provider": "[variables('storageProvider')]",
+            "Search:AzureSearch:Key": "[listAdminKeys(resourceId('Microsoft.Search/searchServices', parameters('searchServiceName')),'2015-08-19').primaryKey]",
+            "Search:AzureSearch:SearchServiceName": "[parameters('searchServiceName')]",
+            "Search:Provider": "AzureSearch",
+            "Search:Scope": "[parameters('searchServiceScope')]",
+            "VirtoCommerce:DiscoveryPath": "../modules"
+          }
+        },
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', parameters('webSiteName-backend'))]",
+            "[concat('Microsoft.Sql/servers/', parameters('sqlserverName'))]"
+          ],
+          "properties": {
+            "VirtoCommerce": {
+              "value": "[concat('Server=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('databaseName'), ';User Id=', parameters('administratorLogin'), '@', parameters('sqlserverName'), ';Password=', parameters('administratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300;')]",
+              "type": "SQLAzure"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('hostingPlanName-storefront')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "HostingPlan-storefront"
+      },
+      "sku": {
+        "name": "[variables('skuCodeHostingPlan')]",
+        "tier": "[variables('skuHostingPlan')]"
+      },
+      "properties": {
+        "name": "[parameters('hostingPlanName-storefront')]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('webSiteName-storefront')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [ "[concat('Microsoft.Web/serverFarms/', parameters('hostingPlanName-storefront'))]" ],
+      "tags": {
+        "displayName": "Website-storefront"
+      },
+      "properties": {
+        "name": "[parameters('webSiteName-storefront')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName-storefront'))]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "web",
+          "dependsOn": [ "[concat('Microsoft.Web/Sites/', parameters('webSiteName-storefront'))]" ],
+          "properties": {
+            "phpVersion": "",
+            "use32BitWorkerProcess": false,
+            "alwaysOn": true,
+            "httpsOnly": true,
+            "http20Enabled": true,
+            "minTlsVersion": "1.2",
+            "requestTracingEnabled": true,
+            "requestTracingExpirationTime": "9999-12-31T23:59:00Z",
+            "httpLoggingEnabled": true,
+            "logsDirectorySizeLimit": 100,
+            "detailedErrorLoggingEnabled": true,
+            "metadata": [
+              {
+                "name": "CURRENT_STACK",
+                "value": "dotnetcore"
+              }
+            ]
+          }
+        },
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "appsettings",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', parameters('webSiteName-storefront'))]",
+            "[concat('Microsoft.Insights/components/', parameters('appinsights-storefront'))]"
+          ],
+          "properties": {
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('Microsoft.Insights/components/', parameters('appinsights-storefront')), '2015-05-01').InstrumentationKey]",
+            "VirtoCommerce:Endpoint:Password": "[parameters('virtoCommerceEndpointPassword')]",
+            "VirtoCommerce:Endpoint:Url": "[parameters('virtoCommerceEndpointURL')]",
+            "VirtoCommerce:Endpoint:UserName": "frontend"
+          }
+        },
+        {
+          "apiVersion": "2015-08-01",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', parameters('webSiteName-storefront'))]",
+            "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
+          ],
+          "properties": {
+            "ContentConnectionString": {
+              "value": "[concat('provider=AzureBlobStorage;rootPath=cms;DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',concat(listKeys(parameters('storageAccountName'),'2015-05-01-preview').key1))]",
+              "type": "Custom"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "2017-10-01",
+      "name": "[parameters('storageAccountName')]",
+      "location": "[resourceGroup().location]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "sku": {
+        "name": "[variables('storageAccountType')]"
+      },
+      "kind": "Storage",
+      "properties": {
+        "supportsHttpsTrafficOnly": false,
+        "encryption": {
+          "services": {
+            "blob": {
+              "enabled": true
+            },
+            "file": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        }
+      },
+      "tags": {
+        "displayName": "StorageAccount"
+      }
+    },
+    {
+      "name": "[parameters('appinsights-backend')]",
+      "type": "Microsoft.Insights/components",
+      "kind": "web",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-05-01",
+      "properties": {
+        "ApplicationId": "[parameters('appinsights-backend')]",
+        "Application_Type": "web",
+        "Flow_Type": "Bluefield",
+        "Request_Source": "rest"
+      },
+      "tags": {
+        "displayName": "ApplicationInsights-backend"
+      }
+    },
+    {
+      "name": "[parameters('appinsights-storefront')]",
+      "type": "Microsoft.Insights/components",
+      "kind": "web",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-05-01",
+      "properties": {
+        "ApplicationId": "[parameters('appinsights-storefront')]",
+        "Application_Type": "web",
+        "Flow_Type": "Bluefield",
+        "Request_Source": "rest"
+      },
+      "tags": {
+        "displayName": "ApplicationInsights-storefront"
+      }
+    }
+  ]
+    }

@@ -1,0 +1,51 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sqlserverName": {
+      "value": "dev-vc-sql-srv"
+    },
+    "databaseName": {
+      "value": "dev-vc-sql-db"
+    },
+    "administratorLogin": {
+      "value": "dev-vc-admin"
+    },
+    "administratorLoginPassword": {
+      "value": "virto-Secret1"
+    },
+    "requestedServiceObjectiveName": {
+      "value": "S2"
+    },
+    "hostingPlanName-backend": {
+      "value": "dev-vc-backend"
+    },
+    "hostingPlanName-storefront": {
+      "value": "dev-vc-store"
+    },
+    "webSiteName-backend": {
+      "value": "dev-vc-backend"
+    },
+    "webSiteName-storefront": {
+      "value": "dev-vc-store"
+    },
+    "appinsights-backend": {
+      "value": "dev-vc-backend"
+    },
+    "appinsights-storefront": {
+      "value": "dev-vc-store"
+    },
+    "storageAccountName": {
+      "value": "devvcstorage"
+    },
+    "searchServiceName": {
+      "value": "dev-vc-azsearch"
+    },
+    "virtoCommerceEndpointPassword": {
+      "value": "dev-vc-Secret2"
+    },
+    "virtoCommerceEndpointURL": {
+      "value": "https://dev-vc-backend.azurewebsites.net/"
+    }
+  }
+}
