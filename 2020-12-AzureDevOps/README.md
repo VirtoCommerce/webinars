@@ -15,6 +15,9 @@ This webinar’s content is primarily technical-oriented; therefore, we invite e
 ### Virto Commerce in Azure devops
 ![](Slide12.PNG)
 
+### Repositories
+![](Repositories.PNG)
+
 ## Section 2 - Productivity & Quality tools
 TODO:
 
