@@ -34,4 +34,6 @@ This webinar’s content is primarily technical-oriented; therefore, we invite e
 [virtocommerce sonarcloud](https://sonarcloud.io/organizations/virto-commerce/projects)
 
 ## Section 3 - How to Configure pipelines
-TODO:
+
+- [ARM Template](DeploymentTemplate.json) and [ARM Template Settings](DeploymentTemplate.param.DEV.json)
+- [Azure DevOps Pipeline Template](azure-pipelines.yml)
