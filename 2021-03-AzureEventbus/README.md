@@ -1,4 +1,4 @@
-# Virto Commerce extensibility withEvent Bus
+# Virto Commerce extensibility with Event Bus module
 
 We are pleased to invite you to our next webinar, where we reveal the features of the new module in the Virto Commerce platform: Event Bus.  
 
