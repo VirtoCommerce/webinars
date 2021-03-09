@@ -6,7 +6,9 @@ This repo provides technical resources to help find resources from [Virto Commer
 [Find Upcoming Events](https://app.livestorm.co/virto/)
 
 ## Past events
+- [2021-03 How to use EventBus module](2021-03-AzureEventbus/README.md)
 - [2020-12 How to use Azure DevOps for Virto Commerce solutions](2020-12-AzureDevOps/README.md)
+
 
 ## References
 You can find more information on:
