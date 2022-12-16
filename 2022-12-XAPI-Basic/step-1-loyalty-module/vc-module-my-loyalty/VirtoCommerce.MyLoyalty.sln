@@ -1,0 +1,64 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6EEC3E8A-592C-489C-9A54-7267E2D924CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.MyLoyalty.Web", "src\VirtoCommerce.MyLoyalty.Web\VirtoCommerce.MyLoyalty.Web.csproj", "{CECDA375-4FBD-443F-A5E6-242288FFAF0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.MyLoyalty.Data", "src\VirtoCommerce.MyLoyalty.Data\VirtoCommerce.MyLoyalty.Data.csproj", "{3D29C55A-3932-4824-8659-3B03EAD53935}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.MyLoyalty.Core", "src\VirtoCommerce.MyLoyalty.Core\VirtoCommerce.MyLoyalty.Core.csproj", "{0697E3BA-C634-4FE1-9928-7779E2A1F5F0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E2D14176-CF82-4F88-B257-5E3F93EF494F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtoCommerce.MyLoyalty.Tests", "tests\VirtoCommerce.MyLoyalty.Tests\VirtoCommerce.MyLoyalty.Tests.csproj", "{1A3A95CC-2873-4F29-A701-CE3B8E4738D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98F4E875-E6CC-433E-8D17-42FDCAC906D6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		module.ignore = module.ignore
+		README.md = README.md
+		VirtoCommerce.MyLoyalty.sln.DotSettings = VirtoCommerce.MyLoyalty.sln.DotSettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CECDA375-4FBD-443F-A5E6-242288FFAF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECDA375-4FBD-443F-A5E6-242288FFAF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECDA375-4FBD-443F-A5E6-242288FFAF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECDA375-4FBD-443F-A5E6-242288FFAF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D29C55A-3932-4824-8659-3B03EAD53935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D29C55A-3932-4824-8659-3B03EAD53935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D29C55A-3932-4824-8659-3B03EAD53935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D29C55A-3932-4824-8659-3B03EAD53935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0697E3BA-C634-4FE1-9928-7779E2A1F5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0697E3BA-C634-4FE1-9928-7779E2A1F5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0697E3BA-C634-4FE1-9928-7779E2A1F5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0697E3BA-C634-4FE1-9928-7779E2A1F5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3A95CC-2873-4F29-A701-CE3B8E4738D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3A95CC-2873-4F29-A701-CE3B8E4738D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3A95CC-2873-4F29-A701-CE3B8E4738D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3A95CC-2873-4F29-A701-CE3B8E4738D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CECDA375-4FBD-443F-A5E6-242288FFAF0E} = {6EEC3E8A-592C-489C-9A54-7267E2D924CE}
+		{3D29C55A-3932-4824-8659-3B03EAD53935} = {6EEC3E8A-592C-489C-9A54-7267E2D924CE}
+		{0697E3BA-C634-4FE1-9928-7779E2A1F5F0} = {6EEC3E8A-592C-489C-9A54-7267E2D924CE}
+		{1A3A95CC-2873-4F29-A701-CE3B8E4738D9} = {E2D14176-CF82-4F88-B257-5E3F93EF494F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {265E6D92-C77B-413D-9F86-EA014B5B15F8}
+	EndGlobalSection
+EndGlobal

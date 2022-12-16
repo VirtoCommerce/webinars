@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <id>VirtoCommerce.MyLoyalty</id>
+    <version>3.200.0</version>
+    <version-tag></version-tag>
+
+    <platformVersion>3.253.1</platformVersion>
+    <dependencies>
+        <!--<dependency id="VirtoCommerce.Core" version="3.200.4" />-->
+    </dependencies>
+
+    <title>VirtoCommerce MyLoyalty module</title>
+    <description>VirtoCommerce MyLoyalty module</description>
+
+    <authors>
+        <author>Oleg Zhuk</author>
+    </authors>
+    <owners>
+        <owner>VirtoCommerce</owner>
+    </owners>
+
+    <projectUrl>https://github.com/VirtoCommerce/vc-module-my-loyalty</projectUrl>
+    <iconUrl>Modules/$(VirtoCommerce.MyLoyalty)/Content/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <assemblyFile>VirtoCommerce.MyLoyalty.Web.dll</assemblyFile>
+    <moduleType>VirtoCommerce.MyLoyalty.Web.Module, VirtoCommerce.MyLoyalty.Web</moduleType>
+
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright © 2022 VirtoCommerce. All rights reserved</copyright>
+    <tags>extension module</tags>
+    <useFullTypeNameInSwagger>false</useFullTypeNameInSwagger>
+</module>

@@ -1,0 +1,28 @@
+{
+  "MyLoyalty": {
+    "blades": {
+      "hello-world": {
+        "title": "Hello world blade"
+      }
+    }
+  },
+  "permissions": {
+    "MyLoyalty:access": "Open MyLoyalty menu",
+    "MyLoyalty:create": "Create MyLoyalty related data",
+    "MyLoyalty:read": "View MyLoyalty related data",
+    "MyLoyalty:update": "Update MyLoyalty related data",
+    "MyLoyalty:delete": "Delete MyLoyalty related data"
+  },
+  "settings": {
+    "MyLoyalty": {
+      "MyLoyaltyEnabled": {
+        "title": "MyLoyalty Enabled",
+        "description": "MyLoyalty Enabled setting"
+      },
+      "MyLoyaltyPassword": {
+        "title": "MyLoyalty Password",
+        "description": "MyLoyalty Password setting"
+      }
+    }
+  }
+}
