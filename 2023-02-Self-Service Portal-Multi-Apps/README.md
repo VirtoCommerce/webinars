@@ -1,0 +1,111 @@
+# Multi-App Experience
+
+We are pleased to invite you to our next webinar, where we reveal Latest Trends in Self Service Portals and The Multi-App Experience in Virto Commerce
+
+Key topics include: 
+
+1. How efficient a one-stop solution for customer service can be.
+1. How to develop, build, and deploy your own web application in Virto Commerce.
+
+
+## Self-Service Portal
+
+### Why is Self-Service portals demand growing
+
+#### Convenience
+With a self-service portal, customers can access the information or services they need at any time, without having to wait for customer service representatives to become available. 
+
+#### Cost-Effective
+Self-service portals can help organizations reduce their costs by automating repetitive tasks and allowing customers to find answers to their questions without the need for human interaction. This  improves operational efficiency.
+
+#### Increased Customer Satisfaction
+Customers value self-service portals because they can quickly and easily access the information or services, they need without the hassle of waiting in line or on hold.
+
+#### Personalization
+Self-service portals can be customized to meet the specific needs of individual customers. For example, a customer can create a personalized dashboard that displays the information and services they use most frequently, making the experience more efficient and enjoyable.
+
+### Self-service portals value for SMB and Enterprises
+For SMBs building an integration with a 3rd party system can be costly:
+
+* Self-service portal can become an alternative to such integration. 
+* A workplace and be the main tool to complete tasks in the external system. 
+* Automate routine tasks and make information readily available to SMB employees
+* Reducing the need for customer service representatives 
+* Improving operational efficiency.
+
+For enterprises, the Self-Service portal:
+* A starting point to scale while building an integration. 
+* Cost-effective solution to proceed with the solution. 
+* Hybrid model with integration via APIs and a Self-service Portal.
+
+### Virto Commerce Self-Service Portal Demo
+
+## Multi-App Experience 
+
+Virto Commerce's multi-app experience allows businesses to create their own app ecosystem, improving overall efficiency and productivity. 
+With seamless navigation between apps and one login, users benefit from an improved user experience, while separated development enables multiple 
+teams to work simultaneously on different aspects of the project. 
+
+Virto Commerce's multi-app experience also allows businesses to scale up or down easily, with the flexibility to add or remove apps as needed. 
+Consistent user interface across all apps is ensured with the One Virto Shell SDK and UI Kit Storybook.
+
+### Demo
+
+
+### Architecture
+Virto Commerce's multi-app architecture allows businesses to create different UI on any Web Technology, such as VueJs, Angular, React, and more, 
+while maintaining one UX. The Virto Commerce platform offers multiple isolated web apps, allowing for separated development with multiple teams, 
+all while ensuring a consistent user interface across all apps with the Virto Shell SDK and UI Kit Storybook. 
+Developers can create, deploy, and manage apps as Virto Commerce modules, reducing the time and effort required to create and deploy apps.
+
+### How to register web app
+
+#### Prerequisites
+* Virto Commerce Platform 3.264+
+* Virto Commerce CLI (VC-BUILD) 3.12+
+* VC Shell
+
+#### Step 1. Add web app in module manifest
+Registration of a new web app is simple. You just need to add the app section in the module manifest.
+
+```xml
+...
+<apps>
+    <app id="reports">
+        <title>Reports</title>
+        <description>Power BI Commerce Reports</description>
+        <iconUrl>/apps/reports/power_bi_logo.svg</iconUrl>
+        <permission>PowerBiReports:access</permission>
+    </app>
+</apps>
+...
+```
+
+Attributes:
+* id: A unique identifier for the app, which distinguishes it from other apps in the system.
+* title: The name or title of the app that is displayed to the users.
+* description: A short description of the app that provides users with an overview of what the app does and its purpose.
+* iconUrl: The URL or path to the app's icon or logo, which is used to identify the app in the system.
+* permission: The permissions or access rights required to use the app, which is used to control who can access the app and its features.
+* contentPath: The default path to the app's content, which is used to specify where the app's files are stored and accessed. In this example, the ContentPath is set to [VcModuleWeb]/Content/[Id], which means that the app's content is stored in the Content folder of the VcModuleWeb module, with the Id of the app appended to the end of the path.
+
+#### Step 2. Create Content/[app_id] folder
+Create a Content/[app_id] folder in the web project. 
+
+Ex: `vc-module-power-bi-reports\src\VirtoCommerce.PowerBiReports.Web\Content\reports`.
+
+Virto Commerce reads the manifest and adds binding to this folder. You can put any web content here. It can be a Virto Shell application or any other HTML application.
+
+#### Step 3. Build, Compress and Deploy
+Use the Virto Commerce CLI (vc-build) to create a module package.
+
+#### Step 4. Rest API
+Virto Commerce provide API to returns list of available APPS.
+
+`GET /api/platform/apps 
+
+Returns list of available APPS.
+
+### References
+* [Power BI Reports](https://github.com/VirtoCommerce/vc-module-power-bi-reports)
+* [Task Management](https://github.com/VirtoCommerce/vc-module-task-management)
