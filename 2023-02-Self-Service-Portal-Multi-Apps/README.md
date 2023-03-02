@@ -62,9 +62,14 @@ Consistent user interface across all apps is ensured with the One Virto Shell SD
 
 ### Architecture
 Virto Commerce's multi-app architecture allows businesses to create different UI on any Web Technology, such as VueJs, Angular, React, and more, 
-while maintaining one UX. The Virto Commerce platform offers multiple isolated web apps, allowing for separated development with multiple teams, 
+while maintaining one UX. 
+
+The Virto Commerce platform offers multiple isolated web apps, allowing for separated development with multiple teams, 
 all while ensuring a consistent user interface across all apps with the Virto Shell SDK and UI Kit Storybook. 
 Developers can create, deploy, and manage apps as Virto Commerce modules, reducing the time and effort required to create and deploy apps.
+
+![image](https://user-images.githubusercontent.com/7639413/222430645-49d35f4c-39af-49a7-ba0a-1b752a3c6d7f.png)
+
 
 ### How to register web app
 
@@ -90,12 +95,12 @@ Registration of a new web app is simple. You just need to add the app section in
 ```
 
 Attributes:
-* id: A unique identifier for the app, which distinguishes it from other apps in the system.
-* title: The name or title of the app that is displayed to the users.
-* description: A short description of the app that provides users with an overview of what the app does and its purpose.
-* iconUrl: The URL or path to the app's icon or logo, which is used to identify the app in the system.
-* permission: The permissions or access rights required to use the app, which is used to control who can access the app and its features.
-* contentPath: The default path to the app's content, which is used to specify where the app's files are stored and accessed. In this example, the ContentPath is set to [VcModuleWeb]/Content/[Id], which means that the app's content is stored in the Content folder of the VcModuleWeb module, with the Id of the app appended to the end of the path.
+* **id**: A unique identifier for the app, which distinguishes it from other apps in the system.
+* **title**: The name or title of the app that is displayed to the users.
+* **description**: A short description of the app that provides users with an overview of what the app does and its purpose.
+* **iconUrl**: The URL or path to the app's icon or logo, which is used to identify the app in the system.
+* **permission**: The permissions or access rights required to use the app, which is used to control who can access the app and its features.
+* **contentPath**: The default path to the app's content, which is used to specify where the app's files are stored and accessed. In this example, the ContentPath is set to [VcModuleWeb]/Content/[Id], which means that the app's content is stored in the Content folder of the VcModuleWeb module, with the Id of the app appended to the end of the path.
 
 As a result, you will have access to this app from Apps Menu:
 ![image](https://user-images.githubusercontent.com/7639413/222345082-a20d1996-becf-4733-801d-e97b3112592f.png)
@@ -105,8 +110,6 @@ As a result, you will have access to this app from Apps Menu:
 
 #### Step 2. Create Content/[app_id] folder
 Create a Content/[app_id] folder in the web project. 
-
-Virto Commerce reads the manifest and adds binding to this folder. 
 
 Virto Commerce reads the manifest and adds binding to this folder. You can put any web content here. It can be a Virto Shell application or any other HTML application.
 
