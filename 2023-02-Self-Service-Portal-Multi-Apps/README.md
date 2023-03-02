@@ -34,7 +34,7 @@ For SMBs building an integration with a 3rd party system can be costly:
 * Automate routine tasks and make information readily available to SMB employees
 * Reducing the need for customer service representatives 
 * Improving operational efficiency.
-* 
+
 ![image](https://user-images.githubusercontent.com/7639413/222177867-de656142-0e59-40a6-97f9-442ee1e0dbd8.png)
 
 For enterprises, the Self-Service portal:
