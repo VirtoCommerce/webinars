@@ -3,7 +3,7 @@ Learn how XAPI works and how to add XAPI to Virto Commerce Module. Explore XAPI 
 
 This learning path helps you add the first XAPI into your Virto Commerce module.
 
-[Download Presentation](2023-02-Self-Service-Portal-Multi-Apps/VC-Webinar-2023-02.pdf)
+[Download Presentation](2022-12-XAPI-Basic.pdf)
 
 ## Overview
 The Experience API (XAPI) project is primarily an intermediated layer between clients and enterprise services powered by GraphQL protocol. It is tightly coupled to a specific user/touchpoint experience with fast and reliable access. It represents an implementation of the back end for the front end (BFF) design pattern.
