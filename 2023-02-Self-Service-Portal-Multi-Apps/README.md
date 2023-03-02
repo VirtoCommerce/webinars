@@ -131,6 +131,6 @@ curl -X GET "https://mycustomdomain.com/api/platform/apps" -H  "accept: text/pla
 ### References
 * [Power BI Reports](https://github.com/VirtoCommerce/vc-module-power-bi-reports)
 * [Task Management](https://github.com/VirtoCommerce/vc-module-task-management)
-* 
+ 
 ### Summary
 The multi-app experience allows businesses to create their own app ecosystem to suit their specific needs. The benefits of the multi-app experience include improved user experience, separated development, scalability, and consistent user interface. The architecture of the multi-app experience allows for different UIs on any web technology while maintaining one UX. Developers can create, deploy, and manage apps as Virto Commerce modules, reducing development time and improving productivity.
