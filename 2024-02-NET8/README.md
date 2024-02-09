@@ -2,7 +2,7 @@
 
 ![Slide1](https://github.com/VirtoCommerce/webinars/assets/7639413/137cd307-2fa9-4e58-84f8-b40a72e78723)
 
-We are pleased to invite you to our next webinar, where we reveal Virto Commerce on .NET 8.
+We are pleased to invite you to the webinar, where we reveal Virto Commerce on .NET 8.
 
 Key topics include: 
 1. What's New in .NET 8
