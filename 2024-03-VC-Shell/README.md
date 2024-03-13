@@ -99,4 +99,4 @@ Let’s go to the main part and build a real-life example of a back-office appli
 * Documentation: [Getting started](https://docs.virtocommerce.org/platform/developer-guide/custom-apps-development/vc-shell/Getting-started/creating-first-custom-app/)
 * Repository: [VC-Shell github repository](https://github.com/VirtoCommerce/vc-shell)
 * Youtube Webinar recording:
-[![Webinar recording](https://img.youtube.com/vi/UL46_lkSTyk/0.jpg)](https://www.youtube.com/watch?v=YUL46_lkSTyk)
+* [![Webinar recording](https://img.youtube.com/vi/UL46_lkSTyk/0.jpg)](https://www.youtube.com/watch?v=UL46_lkSTyk)
