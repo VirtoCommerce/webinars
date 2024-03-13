@@ -96,7 +96,7 @@ All that is available out-of-box with the scaffolding app
 ![Slide7](image-6.png)
 Let’s go to the main part and build a real-life example of a back-office application. In our case it will be a Customer orders application that will connect to a VirtoCommerce platform. Utilize Orders REST API endpoints for the user to be able to list, view, edit, delete customer orders.
 
-Documentation: [Getting started](https://docs.virtocommerce.org/platform/developer-guide/custom-apps-development/vc-shell/Getting-started/creating-first-custom-app/)
-Repository: [VC-Shell github repository](https://github.com/VirtoCommerce/vc-shell)
-Youtube Webinar recording:
+* Documentation: [Getting started](https://docs.virtocommerce.org/platform/developer-guide/custom-apps-development/vc-shell/Getting-started/creating-first-custom-app/)
+* Repository: [VC-Shell github repository](https://github.com/VirtoCommerce/vc-shell)
+* Youtube Webinar recording:
 [![Webinar recording](https://img.youtube.com/vi/UL46_lkSTyk/0.jpg)](https://www.youtube.com/watch?v=YUL46_lkSTyk)
